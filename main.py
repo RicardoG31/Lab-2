@@ -66,6 +66,28 @@ def get_List_Size(password_List):
         node = node.next
     return list_Size
 
+# Adds all passwords to dictionary
+def add_Password_to_Dictionary(password, Dict):
+    if password in Dict:
+        Dict[password] += 1
+    else:
+        Dict[password] = 1
+
+
+# Inserts all passwords into the dictionary
+def insert(password_List, Dict):
+    for password in Dict:
+        node = Node(password, Dict[password], password_List.head)
+        password_List.head = node
+        
+ 
+def read_dict(password_List, Dictionary):       
+    with open('10-million-combos.txt', 'r') as infile:
+        for line in infile:
+            read = line.split()
+            if len(read) > 1:
+                add_Password_to_Dictionary(read[1], Dictionary)
+
 
 # Prints the list of the passwords most repeated
 def print_List(password_List):
@@ -145,27 +167,7 @@ def merge_Lists(left_Half, right_Half):
         curr.next = left_Half
     return new.next
 
-# Adds all passwords to dictionary
-def add_Password_to_Dictionary(password, Dict):
-    if password in Dict:
-        Dict[password] += 1
-    else:
-        Dict[password] = 1
 
-
-# Inserts all passwords into the dictionary
-def insert(password_List, Dict):
-    for password in Dict:
-        node = Node(password, Dict[password], password_List.head)
-        password_List.head = node
-        
- 
-def read_dict(password_List, Dictionary):       
-    with open('10-million-combos.txt', 'r') as infile:
-        for line in infile:
-            read = line.split()
-            if len(read) > 1:
-                add_Password_to_Dictionary(read[1], Dictionary)
 
 
 def main():
